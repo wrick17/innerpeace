@@ -12,20 +12,20 @@ const config = {
         filename: '[name].js',
         path: __dirname + '/build'
     },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.js$/,
-    //             exclude: /(node_modules|bower_components)/,
-    //             use: {
-    //                 loader: 'babel-loader',
-    //                 options: {
-    //                     presets: ['es2015', 'env']
-    //                 }
-    //             }
-    //         }
-    //     ]
-    // },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015', 'env']
+                    }
+                }
+            }
+        ]
+    },
     plugins: [
         // new UglifyJSPlugin({
         //     uglifyOptions: {

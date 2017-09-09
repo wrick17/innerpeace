@@ -6,23 +6,28 @@ let redirectFlag = false;
 function regexBuilder(route) {
     if (route === '/404') return '^\/404$';
     if (route === '/') return '^\/(?!404)';
-    return `^${route}(\/.+|$)`;
+    return (route.indexOf('/:') !== -1) ? `^${route.replace(/^\/:([a-z]+)\w/g, '\/[0-9a-zA-Z]+')}(\/.+|$)` : `^${route}(\/.+|$)`;
 }
 
 function loadRoute(routeObj, initialRoute) {
     if (!initialRoute.startsWith('/')) initialRoute = '/' + initialRoute;
     const pattern = new RegExp(regexBuilder(routeObj.route));
     
-    // console.log(initialRoute, pattern, pattern.test(initialRoute));
     if (pattern.test(initialRoute)) {
+        
+        let arg;
+        if (routeObj.route.indexOf('/:') !== -1) {
+            const match = (new RegExp(/^\/([0-9a-zA-Z]+)(?:\/)?/g)).exec(initialRoute);
+            arg = match[1];
+        }
 
         const pathname = initialRoute.substring(routeObj.route.length);
         const routesDOM = routeObj.children && routeObj.children.map(route => loadRoute(route, pathname)).filter(route => route);
         
-        if (pathname.length && routesDOM && !routesDOM.length) redirectFlag = true;
+        if ((pathname.length && !routeObj.children) || (pathname.length && routesDOM && !routesDOM.length)) redirectFlag = true;
 
         return html`
-            ${routeObj.component( routesDOM )}
+            ${routeObj.component({ arg, children: routesDOM} )}
         `;
     }
     return;
@@ -35,7 +40,7 @@ function Router(state, routes) {
     const routesDOM = routes.map(route => loadRoute(route, path)).filter(route => route);
 
     if (redirectFlag) {
-        dispatch('CHANGE_PATH', '/404');
+        dispatch('REPLACE_PATH', '/404');
         return html`
             ${routes.filter(route => route.hasOwnProperty('notFound'))[0].component()}
         `;

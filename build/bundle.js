@@ -68,8 +68,9 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = html;
-/* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = html;
+/* harmony export (immutable) */ __webpack_exports__["createStore"] = createStore;
 function html([first, ...strings], ...values) {
     // Weave the literal strings and the interpolations.
     // We don't have to explicitly handle array-typed values
@@ -119,65 +120,91 @@ function createStore(reducer) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return attach; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return connect; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_innerself_logger__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reducer__ = __webpack_require__(5);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.connect = exports.attach = undefined;
 
+var _innerself = __webpack_require__(0);
 
+var _logger = __webpack_require__(4);
 
-const { attach, connect, dispatch } =
-    Object(__WEBPACK_IMPORTED_MODULE_0_innerself__["a" /* createStore */])(Object(__WEBPACK_IMPORTED_MODULE_1_innerself_logger__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_2__reducer__["a" /* default */]));
+var _logger2 = _interopRequireDefault(_logger);
+
+var _reducer = __webpack_require__(5);
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _createStore = (0, _innerself.createStore)((0, _logger2.default)(_reducer2.default)),
+    attach = _createStore.attach,
+    connect = _createStore.connect,
+    dispatch = _createStore.dispatch;
 
 window.dispatch = dispatch;
 
-
-
+exports.attach = attach;
+exports.connect = connect;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(1);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(["\n        <a href=\"", "\" onclick=\"event.preventDefault(); if (location.pathname !== '", "') dispatch('CHANGE_PATH', '", "')\">", "</a>\n    "], ["\n        <a href=\"", "\" onclick=\"event.preventDefault(); if (location.pathname !== '", "') dispatch('CHANGE_PATH', '", "')\">", "</a>\n    "]);
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+var _store = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function Link(state, path, children) {
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        <a href="${path}" onclick="event.preventDefault(); if (location.pathname !== '${path}') dispatch('CHANGE_PATH', '${path}')">${children}</a>
-    `;
+    return (0, _innerself2.default)(_templateObject, path, path, path, children);
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__store__["b" /* connect */])(Link));
+exports.default = (0, _store.connect)(Link);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(7);
 
 
+var _store = __webpack_require__(1);
 
-Object(__WEBPACK_IMPORTED_MODULE_0__store__["a" /* attach */])(__WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */], document.querySelector("#root"));
+var _App = __webpack_require__(7);
 
+var _App2 = _interopRequireDefault(_App);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _store.attach)(_App2.default, document.querySelector("#root"));
 
 /***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = logger;
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = logger;
 function logger(reducer) {
     return function(prev_state, action, args) {
         console.group(action);
@@ -193,43 +220,68 @@ function logger(reducer) {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = reducer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself_sanitize__ = __webpack_require__(6);
 
 
-let pathname = location.pathname;
-const init = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = reducer;
+
+var _sanitize = __webpack_require__(6);
+
+var _sanitize2 = _interopRequireDefault(_sanitize);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pathname = location.pathname;
+var init = {
     path: pathname
 };
 
-function reducer(state = init, action, args) {
-    switch (action) {
-        case "CHANGE_PATH": {
-            const [path] = args;
-            console.log(path, location.pathname)
+function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init;
+    var action = arguments[1];
+    var args = arguments[2];
 
-            // if (path === location.pathname) return state;
-            
-            history.pushState(null, null, path);
-            return Object.assign({}, state, {
-                path: path
-            });
-        }
+    switch (action) {
+        case "CHANGE_PATH":
+            {
+                var _args = _slicedToArray(args, 1),
+                    path = _args[0];
+
+                history.pushState(null, null, path);
+                return Object.assign({}, state, {
+                    path: path
+                });
+            }
+        case "REPLACE_PATH":
+            {
+                var _args2 = _slicedToArray(args, 1),
+                    _path = _args2[0];
+
+                history.replaceState(null, null, _path);
+                return Object.assign({}, state, {
+                    path: _path
+                });
+            }
         default:
             return state;
     }
 }
-
 
 /***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export default */
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = sanitize;
 const TEMPLATE = document.createElement("template");
 const ENTITIES = {
     "&": "&amp;",
@@ -252,188 +304,293 @@ function sanitize(value) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Home__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__About__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Dummy__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__NotFound__ = __webpack_require__(12);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _templateObject = _taggedTemplateLiteral(["\n        ", "\n    "], ["\n        ", "\n    "]);
 
+var _innerself = __webpack_require__(0);
 
+var _innerself2 = _interopRequireDefault(_innerself);
 
+var _store = __webpack_require__(1);
 
+var _Link = __webpack_require__(2);
 
+var _Link2 = _interopRequireDefault(_Link);
 
+var _Router = __webpack_require__(8);
 
-const routeConfig = [
-    {
-        route: '/',
-        component: __WEBPACK_IMPORTED_MODULE_4__Home__["a" /* default */],
-        children: [{
-            route: '/about',
-            component: __WEBPACK_IMPORTED_MODULE_5__About__["a" /* default */],
-            children: [{
-                route: '/dummy',
-                component: __WEBPACK_IMPORTED_MODULE_6__Dummy__["a" /* default */]
-            }]
-        }]
-    },
-    {
-        route: '/404',
-        notFound: true,
-        component: __WEBPACK_IMPORTED_MODULE_7__NotFound__["a" /* default */]
-    }
-];
+var _Router2 = _interopRequireDefault(_Router);
+
+var _Routes = __webpack_require__(9);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function App(state) {
-    window.onpopstate = function() {
-        // console.log(state.path, location.pathname);
+    window.onpopstate = function () {
         if (state.path !== location.pathname) dispatch('CHANGE_PATH', location.pathname);
-    } 
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        ${Object(__WEBPACK_IMPORTED_MODULE_3__Router__["a" /* default */])(routeConfig)}
-    `;
+    };
+    return (0, _innerself2.default)(_templateObject, (0, _Router2.default)(_Routes2.default));
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__store__["b" /* connect */])(App));
+exports.default = (0, _store.connect)(App);
 
 /***/ }),
 /* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(1);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-let redirectFlag = false;
+var _templateObject = _taggedTemplateLiteral(["\n            ", "\n        "], ["\n            ", "\n        "]),
+    _templateObject2 = _taggedTemplateLiteral(["\n        ", "\n    "], ["\n        ", "\n    "]);
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+var _store = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var redirectFlag = false;
 
 function regexBuilder(route) {
     if (route === '/404') return '^\/404$';
     if (route === '/') return '^\/(?!404)';
-    return `^${route}(\/.+|$)`;
+    return route.indexOf('/:') !== -1 ? "^" + route.replace(/^\/:([a-z]+)\w/g, '\/[0-9a-zA-Z]+') + "(/.+|$)" : "^" + route + "(/.+|$)";
 }
 
 function loadRoute(routeObj, initialRoute) {
     if (!initialRoute.startsWith('/')) initialRoute = '/' + initialRoute;
-    const pattern = new RegExp(regexBuilder(routeObj.route));
-    
-    // console.log(initialRoute, pattern, pattern.test(initialRoute));
+    var pattern = new RegExp(regexBuilder(routeObj.route));
+
     if (pattern.test(initialRoute)) {
 
-        const pathname = initialRoute.substring(routeObj.route.length);
-        const routesDOM = routeObj.children && routeObj.children.map(route => loadRoute(route, pathname)).filter(route => route);
-        
-        if (pathname.length && routesDOM && !routesDOM.length) redirectFlag = true;
+        var arg = void 0;
+        if (routeObj.route.indexOf('/:') !== -1) {
+            var match = new RegExp(/^\/([0-9a-zA-Z]+)(?:\/)?/g).exec(initialRoute);
+            arg = match[1];
+        }
 
-        return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-            ${routeObj.component( routesDOM )}
-        `;
+        var pathname = initialRoute.substring(routeObj.route.length);
+        var routesDOM = routeObj.children && routeObj.children.map(function (route) {
+            return loadRoute(route, pathname);
+        }).filter(function (route) {
+            return route;
+        });
+
+        if (pathname.length && !routeObj.children || pathname.length && routesDOM && !routesDOM.length) redirectFlag = true;
+
+        return (0, _innerself2.default)(_templateObject, routeObj.component({ arg: arg, children: routesDOM }));
     }
     return;
 }
 
 function Router(state, routes) {
-    const { path } = state;
+    var path = state.path;
+
     redirectFlag = false;
 
-    const routesDOM = routes.map(route => loadRoute(route, path)).filter(route => route);
+    var routesDOM = routes.map(function (route) {
+        return loadRoute(route, path);
+    }).filter(function (route) {
+        return route;
+    });
 
     if (redirectFlag) {
-        dispatch('CHANGE_PATH', '/404');
-        return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-            ${routes.filter(route => route.hasOwnProperty('notFound'))[0].component()}
-        `;
-    } 
-    
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        ${ routesDOM }
-    `;
+        dispatch('REPLACE_PATH', '/404');
+        return (0, _innerself2.default)(_templateObject, routes.filter(function (route) {
+            return route.hasOwnProperty('notFound');
+        })[0].component());
+    }
+
+    return (0, _innerself2.default)(_templateObject2, routesDOM);
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1__store__["b" /* connect */])(Router));
+exports.default = (0, _store.connect)(Router);
 
 /***/ }),
 /* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = Home;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Link__ = __webpack_require__(2);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-function Home(children) {
+var _Home = __webpack_require__(10);
 
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        <h1>App</h1>
-        ${Object(__WEBPACK_IMPORTED_MODULE_1__Link__["a" /* default */])('/about', 'Lets visit about')}
-        ${children}
-        ${Object(__WEBPACK_IMPORTED_MODULE_1__Link__["a" /* default */])('/about/dummy', 'check out the dummy page')}
-        <div>footer</div>
-        ${Object(__WEBPACK_IMPORTED_MODULE_1__Link__["a" /* default */])('/', 'good page')}
-        ${Object(__WEBPACK_IMPORTED_MODULE_1__Link__["a" /* default */])('/bad_page', '404')}
-    `;
-}
+var _Home2 = _interopRequireDefault(_Home);
+
+var _About = __webpack_require__(11);
+
+var _About2 = _interopRequireDefault(_About);
+
+var _Dummy = __webpack_require__(12);
+
+var _Dummy2 = _interopRequireDefault(_Dummy);
+
+var _NotFound = __webpack_require__(13);
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var routeConfig = [{
+    route: '/',
+    component: _Home2.default,
+    children: [{
+        route: '/about',
+        component: _About2.default,
+        children: [{
+            route: '/:dummy',
+            component: _Dummy2.default
+        }]
+    }]
+}, {
+    route: '/404',
+    notFound: true,
+    component: _NotFound2.default
+}];
+
+exports.default = routeConfig;
 
 /***/ }),
 /* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = About;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
 
 
-function About(children) {
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        <div>about</div>
-        ${children}
-    `;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n        <h1>App</h1>\n        ', '\n        ', '\n        ', '\n        ', '\n        <div>footer</div>\n        ', '\n        ', '\n    '], ['\n        <h1>App</h1>\n        ', '\n        ', '\n        ', '\n        ', '\n        <div>footer</div>\n        ', '\n        ', '\n    ']);
+
+exports.default = Home;
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+var _Link = __webpack_require__(2);
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function Home(props) {
+
+    return (0, _innerself2.default)(_templateObject, (0, _Link2.default)('/', 'Go home'), (0, _Link2.default)('/about', 'Lets visit about'), props.children, (0, _Link2.default)('/about/123123', 'check out the dummy page'), (0, _Link2.default)('/', 'good page'), (0, _Link2.default)('/bad_page', '404'));
 }
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = Dummy;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
 
 
-function Dummy() {
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        <div>Dummy</div>
-    `;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(["\n        <div>about</div>\n        ", "\n    "], ["\n        <div>about</div>\n        ", "\n    "]);
+
+exports.default = About;
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function About(props) {
+    return (0, _innerself2.default)(_templateObject, props.children);
 }
 
 /***/ }),
 /* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = Home;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_innerself__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Link__ = __webpack_require__(2);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-function Home(children) {
+var _templateObject = _taggedTemplateLiteral(["\n        <div>Dummy has argument of ", "</div>\n    "], ["\n        <div>Dummy has argument of ", "</div>\n    "]);
 
-    return __WEBPACK_IMPORTED_MODULE_0_innerself__["b" /* default */]`
-        <div>Oops! the page you were searching for was not found!</div>
-        ${Object(__WEBPACK_IMPORTED_MODULE_1__Link__["a" /* default */])('/', 'Go home')}
-    `;
+exports.default = Dummy;
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function Dummy(props) {
+    return (0, _innerself2.default)(_templateObject, props.arg);
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n        <div>Oops! the page you were searching for was not found!</div>\n        ', '\n    '], ['\n        <div>Oops! the page you were searching for was not found!</div>\n        ', '\n    ']);
+
+exports.default = NotFound;
+
+var _innerself = __webpack_require__(0);
+
+var _innerself2 = _interopRequireDefault(_innerself);
+
+var _Link = __webpack_require__(2);
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function NotFound() {
+
+    return (0, _innerself2.default)(_templateObject, (0, _Link2.default)('/', 'Go home'));
 }
 
 /***/ })
