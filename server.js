@@ -9,6 +9,7 @@ app.use(compression({
     threshold: 0
 }));
 app.use('/build', express.static('build'));
+app.use('/static', express.static('static'));
 
 app.get('*', function (req, res) {
     res.sendFile(path.resolve('./index.html'));
